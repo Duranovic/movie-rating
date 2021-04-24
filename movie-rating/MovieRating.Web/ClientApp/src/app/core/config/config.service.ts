@@ -9,7 +9,6 @@ export class ConfigService {
         private appConfig: AppConfig) { }
 
     load(): Promise<void> {
-        debugger;
         const appSettings = `/settings/appsettings.json`;
         const promise = this.http.get<AppConfig>(appSettings)
             .toPromise()
@@ -19,7 +18,6 @@ export class ConfigService {
     }
 
     private setConfig(config: AppConfig): void {
-        debugger;
         this.appConfig.appSettings = config.appSettings;
     }
 }

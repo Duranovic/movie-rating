@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AppConfig } from 'src/app/app-config';
+import { ApiResponse } from 'src/app/core/models/api/api-response';
 
 import { TvMovie } from '../../models/tv-movie';
 
@@ -11,7 +12,7 @@ export class TvMovieApiService {
     }
 
     getTvMovie(){
-      return this.http.get<TvMovie[]>(`${this.baseUrl}`)
+      return this.http.get<ApiResponse<TvMovie[]>>(`${this.baseUrl}`)
     }
 
     get baseUrl(): string {
