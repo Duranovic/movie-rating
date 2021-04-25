@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace MovieRating.Data.Entities
 {
@@ -9,5 +7,6 @@ namespace MovieRating.Data.Entities
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public ICollection<MovieActor> MovieActors { get; set; }
     }
 }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace MovieRating.Data.Entities
+﻿namespace MovieRating.Data.Entities
 {
     public class ShowActor
     {

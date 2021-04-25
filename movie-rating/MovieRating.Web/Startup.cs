@@ -2,9 +2,11 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MovieRating.Data.Context;
 
 namespace MovieRating.Web
 {
@@ -21,6 +23,12 @@ namespace MovieRating.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            string connString = Configuration.GetConnectionString("ConnectionString");
+            services.AddDbContext<MovieRatingDbContext>(options =>
+            {
+                options.UseSqlServer(connString);
+            });
+
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {
@@ -29,10 +37,11 @@ namespace MovieRating.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, MovieRatingDbContext context)
         {
             if (env.IsDevelopment())
             {
+                context.Database.Migrate();
                 app.UseDeveloperExceptionPage();
             }
             else
@@ -50,7 +59,6 @@ namespace MovieRating.Web
             }
 
             app.UseRouting();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
