@@ -6,7 +6,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using MovieRating.Core;
 using MovieRating.Data.Context;
+using MovieRating.Data.Repository;
 
 namespace MovieRating.Web
 {
@@ -23,11 +25,6 @@ namespace MovieRating.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            string connString = Configuration.GetConnectionString("ConnectionString");
-            services.AddDbContext<MovieRatingDbContext>(options =>
-            {
-                options.UseSqlServer(connString);
-            });
 
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -41,7 +38,6 @@ namespace MovieRating.Web
         {
             if (env.IsDevelopment())
             {
-                context.Database.Migrate();
                 app.UseDeveloperExceptionPage();
             }
             else

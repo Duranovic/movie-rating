@@ -9,7 +9,7 @@ namespace MovieRating.Data.ApiModels
 
         public int PageSize
         {
-            get => _pageSize == default ? 25 : _pageSize;
+            get => _pageSize == default ? 10 : _pageSize;
             set => _pageSize = value;
         }
 

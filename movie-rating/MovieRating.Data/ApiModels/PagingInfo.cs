@@ -4,7 +4,7 @@ namespace SharedKernel.ApiModels
 {
     public class PagingInfo
     {
-        private const int DefaultPageSize = 50;
+        private const int DefaultPageSize = 10;
         private const int DefaultPageNumber = 1;
 
         public PagingInfo(int pageNumber = DefaultPageNumber, int pageSize = DefaultPageSize)

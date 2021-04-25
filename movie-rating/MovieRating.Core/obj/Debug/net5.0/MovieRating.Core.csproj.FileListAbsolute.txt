@@ -10,3 +10,6 @@ C:\Users\Velid Duranovic\Documents\GitHub\movie-rating\movie-rating\MovieRating.
 C:\Users\Velid Duranovic\Documents\GitHub\movie-rating\movie-rating\MovieRating.Core\obj\Debug\net5.0\MovieRating.Core.dll
 C:\Users\Velid Duranovic\Documents\GitHub\movie-rating\movie-rating\MovieRating.Core\obj\Debug\net5.0\ref\MovieRating.Core.dll
 C:\Users\Velid Duranovic\Documents\GitHub\movie-rating\movie-rating\MovieRating.Core\obj\Debug\net5.0\MovieRating.Core.pdb
+C:\Users\Velid Duranovic\Documents\GitHub\movie-rating\movie-rating\MovieRating.Core\bin\Debug\net5.0\MovieRating.Data.dll
+C:\Users\Velid Duranovic\Documents\GitHub\movie-rating\movie-rating\MovieRating.Core\bin\Debug\net5.0\MovieRating.Data.pdb
+C:\Users\Velid Duranovic\Documents\GitHub\movie-rating\movie-rating\MovieRating.Core\obj\Debug\net5.0\MovieRating.Core.csproj.CopyComplete
