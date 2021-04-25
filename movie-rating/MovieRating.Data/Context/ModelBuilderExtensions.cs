@@ -32,7 +32,7 @@ namespace MovieRating.Data.Context
             List<Movie> movies = moviesFaker
                 .RuleFor(x => x.Id, y => ++y.IndexVariable)
                 .RuleFor(x => x.Title, y => y.Commerce.ProductName())
-                .RuleFor(x => x.CoverImage, y => y.Image.PicsumUrl())
+                .RuleFor(x => x.CoverImageUrl, y => y.Image.PicsumUrl())
                 .RuleFor(x => x.Description, y => y.Commerce.ProductDescription())
                 .RuleFor(x => x.ReleaseDate, y => y.Date.Future())
                 .Generate(25);

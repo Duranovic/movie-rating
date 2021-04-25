@@ -8,14 +8,19 @@ import { TvMovie } from '../../models/tv-movie';
 
 @Injectable()
 export class TvMovieApiService {
+    numberOfMoviesLoaded: number = 10;
     constructor(readonly http: HttpClient, readonly appConfig: AppConfig) {
     }
 
     getTvMovie(){
-      return this.http.get<ApiResponse<TvMovie[]>>(`${this.baseUrl}`)
+      return this.http.get<TvMovie[]>(`${this.baseUrl}/movie?min=1&max=${this.numberOfMoviesLoaded}`);
+    }
+
+    loadMoreTvMovies(){
+      return this.http.get<TvMovie[]>(`${this.baseUrl}/movie?min=${this.numberOfMoviesLoaded + 1}&max=${this.numberOfMoviesLoaded+=10}`);
     }
 
     get baseUrl(): string {
-        return `${this.appConfig.appSettings.apiEndpoints.endpoint}/movie?min=5&max=10`;
+        return `${this.appConfig.appSettings.apiEndpoints.endpoint}`;
     }
 }

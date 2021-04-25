@@ -30,7 +30,7 @@ namespace MovieRating.Core
         {
             return await Task.FromResult(movieRepository.GetAll()
                 .Skip(min - 1)
-                .Take(max - min)
+                .Take(max - min + 1)
                 .ToList());
         }
     }

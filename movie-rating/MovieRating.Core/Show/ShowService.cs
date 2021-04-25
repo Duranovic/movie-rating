@@ -10,27 +10,27 @@ namespace MovieRating.Core
 {
     public interface IShowService
     {
-        Task<Movie> Get(int id);
-        Task<ICollection<Movie>> GetInRange(int min, int max);
+        Task<Show> Get(int id);
+        Task<ICollection<Show>> GetInRange(int min, int max);
     }
     public class ShowService : IShowService
     {
-        readonly IRepository<Movie> movieRepository;
-        public ShowService(IRepository<Movie> movieRepository)
+        readonly IRepository<Show> showRepository;
+        public ShowService(IRepository<Show> showRepository)
         {
-            this.movieRepository = movieRepository;
+            this.showRepository = showRepository;
         }
 
-        public async Task<Movie> Get(int id)
+        public async Task<Show> Get(int id)
         {
-            return await Task.FromResult(movieRepository.Get(id));
+            return await Task.FromResult(showRepository.Get(id));
         }
 
-        public async Task<ICollection<Movie>> GetInRange(int min, int max)
+        public async Task<ICollection<Show>> GetInRange(int min, int max)
         {
-            return await Task.FromResult(movieRepository.GetAll()
-                .Skip(min - 1)
-                .Take(max - min)
+            return  await Task.FromResult(showRepository.GetAll()
+                .Skip(min)
+                .Take(max - min + 1)
                 .ToList());
         }
     }

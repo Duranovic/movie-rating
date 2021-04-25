@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { TvMovie } from './models/tv-movie';
+import { TvShow } from './models/tv-show';
 import { TvMovieApiService } from './services/api/tv-movie.service';
+import { TvShowApiService } from './services/api/tv-show.service';
+
 
 @Component({
   selector: 'app-home',
@@ -7,10 +12,38 @@ import { TvMovieApiService } from './services/api/tv-movie.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  tvMovies: TvMovie[];
+  tvShows: TvShow[];
+  isTvShows: boolean = false;
+  formGroup: FormGroup;
 
-  constructor(private tvMovieService: TvMovieApiService) { }
+  constructor(private tvMovieService: TvMovieApiService, private tvShowService: TvShowApiService) { }
 
   ngOnInit(): void {
-    this.tvMovieService.getTvMovie().pipe().subscribe(x=>{console.log(x)});
+    this.formGroup = new FormGroup({
+      search: new FormControl(''),
+      toggle: new FormControl(false)
+    });
+    console.log(this.formGroup);
+
+    this.tvMovieService.getTvMovie().pipe().subscribe(
+      data=>{
+        this.tvMovies = data;
+      });
+  }
+
+  loadMoreItems(){
+    this.isTvShows?this.loadMoreMovies():this.loadMoreMovies();
+  }
+
+  loadMoreMovies(){
+    this.tvMovieService.loadMoreTvMovies().pipe().subscribe(
+      data=>this.tvMovies.push(...data)
+    );
+  }
+  loadMoreShows(){
+    this.tvShowService.loadMoreTvShows().pipe().subscribe(
+      data=>this.tvShows.push(...data)
+    );
   }
 }

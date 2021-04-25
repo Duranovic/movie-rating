@@ -93,3 +93,5 @@ C:\Users\Velid Duranovic\Documents\GitHub\movie-rating\movie-rating\MovieRating.
 C:\Users\Velid Duranovic\Documents\GitHub\movie-rating\movie-rating\MovieRating.API\bin\Debug\net5.0\MovieRating.Data.dll
 C:\Users\Velid Duranovic\Documents\GitHub\movie-rating\movie-rating\MovieRating.API\bin\Debug\net5.0\MovieRating.Core.pdb
 C:\Users\Velid Duranovic\Documents\GitHub\movie-rating\movie-rating\MovieRating.API\bin\Debug\net5.0\MovieRating.Data.pdb
+C:\Users\Velid Duranovic\Documents\GitHub\movie-rating\movie-rating\MovieRating.API\bin\Debug\net5.0\Humanizer.dll
+C:\Users\Velid Duranovic\Documents\GitHub\movie-rating\movie-rating\MovieRating.API\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll

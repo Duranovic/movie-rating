@@ -4,7 +4,7 @@ export interface TvShow {
   id: string;
   title: string;
   releaseDate: Date;
-  coverImage: string
+  coverImageUrl: string
   description: string;
   rating: number;
   actors: Actor[];

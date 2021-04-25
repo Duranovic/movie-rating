@@ -1,1 +1,24 @@
-<p>home works!</p>
+<div class="container home-container mb-5">
+    <div class="row">
+        <div class="col-12">
+            <form class="search-form" [formGroup]="formGroup">
+                <div class="form-group text-center">
+                    <mat-form-field class="w-100" color="accent">
+                        <mat-label>Search</mat-label>
+                        <input matInput placeholder="Ex. Pizza" value="Sushi" formControlName="search">
+                    </mat-form-field>
+                </div>
+                <mat-slide-toggle formControlName="toggle">Show TV Shows</mat-slide-toggle>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<ng-container *ngIf="tvMovies!=null && !formGroup.controls.toggle.value">
+    <app-list-tv-movie></app-list-tv-movie>
+</ng-container>
+
+<ng-container *ngIf="tvShows==null && formGroup.controls.toggle.value">
+    <app-list-tv-show></app-list-tv-show>
+</ng-container>

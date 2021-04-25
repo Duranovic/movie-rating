@@ -14,16 +14,16 @@ namespace MovieRating.API.Controllers
     [Route("[controller]")]
     public class ShowController : ControllerBase
     {
-        readonly IMovieService movieService;
-        public ShowController(IMovieService movieService)
+        readonly IShowService showService;
+        public ShowController(IShowService showService)
         {
-            this.movieService = movieService;
+            this.showService = showService;
         }
 
         [HttpGet]
-        public async Task<ICollection<Movie>> GetInRange(int min, int max)
+        public async Task<ICollection<Show>> GetInRange(int min, int max)
         {
-            return await movieService.GetInRange(min, max);
+            return await showService.GetInRange(min, max);
         }
     }
 }

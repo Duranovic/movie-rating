@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="top-list row">
+        <div class="col-12 text-center mb-5">
+            <h2>The Top TV Movies</h2>
+        </div>
+        <div class="item col-lg-4 mb-5" *ngFor="let item of tvMovies">
+            <mat-card class="example-card">
+                <mat-card-header>
+                    <mat-card-title>{{item.title}}</mat-card-title>
+                    <mat-card-subtitle>{{(item.rating || 3) + " stars"}}</mat-card-subtitle>
+                </mat-card-header>
+                <img mat-card-image [src]="item.coverImageUrl || 'https://via.placeholder.com/300'" alt="Photo">
+                <mat-card-content>
+                    <p>
+                        {{item.description}}
+                    </p>
+                </mat-card-content>
+            </mat-card>
+        </div>
+        <div class="col-12 text-center mb-5">
+            <button type="button" mat-raised-button color="accent" (click)="loadMoreItems()">Load more</button>
+        </div>
+    </div>
+</div>

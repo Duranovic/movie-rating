@@ -2,19 +2,22 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AppConfig } from 'src/app/app-config';
-import { ApiResponse } from 'src/app/core/models/api/api-response';
-
 import { TvShow } from '../../models/tv-show';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TvShowService {
+export class TvShowApiService {
+  numberOfShowsLoaded: number = 10;
 
   constructor(readonly http: HttpClient, readonly appConfig: AppConfig) { }
 
-  getTvMovie(){
-    return this.http.get<ApiResponse<TvShow[]>>(`${this.baseUrl}`)
+  getTvShow(){
+    return this.http.get<TvShow[]>(`${this.baseUrl}/show?min=1&max=${this.numberOfShowsLoaded}`)
+  }
+
+  loadMoreTvShows(){
+    return this.http.get<TvShow[]>(`${this.baseUrl}/movie?min=${this.numberOfShowsLoaded + 1}&max=${this.numberOfShowsLoaded+=10}`);
   }
 
   get baseUrl(): string {

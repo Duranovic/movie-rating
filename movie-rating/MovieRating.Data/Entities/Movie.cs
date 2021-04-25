@@ -8,7 +8,7 @@ namespace MovieRating.Data.Entities
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public string CoverImage { get; set; }
+        public string CoverImageUrl { get; set; }
         public DateTime ReleaseDate { get; set; }
         public ICollection<MovieActor> MovieActors { get; set; }
         public ICollection<MovieStar> MovieStars { get; set; }

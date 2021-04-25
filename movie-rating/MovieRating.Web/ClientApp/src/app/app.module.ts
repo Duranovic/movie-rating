@@ -3,7 +3,7 @@ import { HttpClientModule,  HttpErrorResponse } from '@angular/common/http';
 import { APP_INITIALIZER, Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ConfigService } from './core/config/config.service';
@@ -32,7 +32,8 @@ export function configAndLogsServiceFactory(
     HttpClientModule,
     AppRoutingModule,
     CoreModule,
-    HomeModule
+    HomeModule,
+    BrowserAnimationsModule
   ],
   providers: [
     ConfigService,
