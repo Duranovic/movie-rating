@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 
 namespace MovieRating.Core
 {
-    public interface IMovieService
+    public interface IShowService
     {
         Task<Movie> Get(int id);
         Task<ICollection<Movie>> GetInRange(int min, int max);
     }
-    public class MovieService : IMovieService
+    public class ShowService : IShowService
     {
         readonly IRepository<Movie> movieRepository;
-        public MovieService(IRepository<Movie> movieRepository)
+        public ShowService(IRepository<Movie> movieRepository)
         {
             this.movieRepository = movieRepository;
         }

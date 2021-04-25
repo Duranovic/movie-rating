@@ -14,6 +14,7 @@ namespace MovieRating.Data.Repository
         void Add(TEntity entity);
         void Remove(TEntity entity);
         TEntity Get(int id);
+        IEnumerable<TEntity> GetAll();
 
     }
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class

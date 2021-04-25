@@ -12,10 +12,10 @@ namespace MovieRating.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class MovieController : ControllerBase
+    public class ShowController : ControllerBase
     {
         readonly IMovieService movieService;
-        public MovieController(IMovieService movieService)
+        public ShowController(IMovieService movieService)
         {
             this.movieService = movieService;
         }

@@ -16,6 +16,6 @@ export class TvMovieApiService {
     }
 
     get baseUrl(): string {
-        return `${this.appConfig.appSettings.apiEndpoints.endpoint}`;
+        return `${this.appConfig.appSettings.apiEndpoints.endpoint}/movie?min=5&max=10`;
     }
 }
