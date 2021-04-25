@@ -2,23 +2,49 @@
     <div class="top-list row">
         <div class="col-12 text-center mb-5">
             <h2>The Top TV Movies</h2>
+            <button mat-raised-button color="accent" class="mt-2" (click)="toggleShowRateMovie()">
+                <span *ngIf="!showRateMovie">Rate movies</span>
+                <span *ngIf="showRateMovie">Show top movies</span>
+            </button>
         </div>
-        <div class="item col-lg-4 mb-5" *ngFor="let item of tvMovies">
-            <mat-card class="example-card">
-                <mat-card-header>
-                    <mat-card-title>{{item.title}}</mat-card-title>
-                    <mat-card-subtitle>{{(item.rating || 3) + " stars"}}</mat-card-subtitle>
-                </mat-card-header>
-                <img mat-card-image [src]="item.coverImageUrl || 'https://via.placeholder.com/300'" alt="Photo">
-                <mat-card-content>
-                    <p>
-                        {{item.description}}
-                    </p>
-                </mat-card-content>
-            </mat-card>
-        </div>
-        <div class="col-12 text-center mb-5">
-            <button type="button" mat-raised-button color="accent" (click)="loadMoreItems()">Load more</button>
-        </div>
+        <ng-container *ngIf="!showRateMovie">
+            <div class="item col-lg-4 mb-5" *ngFor="let item of tvMovies">
+                <mat-card class="example-card">
+                    <mat-card-header>
+                        <mat-card-title>{{item.title}}</mat-card-title>
+                        <mat-card-subtitle>
+                            <app-rating-icon [count]="item.rating"></app-rating-icon>
+                        </mat-card-subtitle>
+                    </mat-card-header>
+                    <img mat-card-image [src]="item.coverImageUrl || 'https://via.placeholder.com/300'" alt="Photo">
+                    <mat-card-content>
+                        <p>
+                            {{item.description}}
+                        </p>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="showRateMovie">
+              <table class="table">
+                  <tr>
+                      <th>Title</th>
+                      <th>Global rating</th>
+                      <th>Your rate</th>
+                  </tr>
+                    <tr *ngFor="let item of tvMovies">
+                        <td>{{item.title}}</td>
+                        <td>
+                            <app-rating-icon [count]="item.rating"></app-rating-icon>
+                        </td>
+                        <td>
+                            <app-rating-icon [count]="item.yourRate" clickable="yes" (newItemEvent)="rateMovie($event, item.id, item.yourRateId)"></app-rating-icon>
+                        </td>
+                    </tr>
+              </table>
+        </ng-container>
+    </div>
+    <div class="col-12 text-center mb-5">
+        <button type="button" mat-raised-button color="accent" (click)="loadMoreItems()">Load more</button>
     </div>
 </div>

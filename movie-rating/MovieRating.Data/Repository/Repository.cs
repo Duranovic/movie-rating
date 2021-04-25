@@ -11,7 +11,8 @@ namespace MovieRating.Data.Repository
 {
     public interface IRepository<TEntity>
     {
-        void Add(TEntity entity);
+        TEntity Add(TEntity entity);
+        TEntity Update(TEntity entity);
         void Remove(TEntity entity);
         TEntity Get(int id);
         IEnumerable<TEntity> GetAll();
@@ -28,16 +29,18 @@ namespace MovieRating.Data.Repository
             dbSet = dbContext.Set<TEntity>();
         }
 
-        public void Add(TEntity entity)
+        public TEntity Add(TEntity entity)
         {
             dbSet.Add(entity);
             dbContext.SaveChanges();
+            return entity;
         }
 
-        public void Update(TEntity entity)
+        public TEntity Update(TEntity entity)
         {
             dbContext.Entry(entity).State = EntityState.Modified;
             dbContext.SaveChanges();
+            return entity;
         }
 
         public void Remove(TEntity entity)

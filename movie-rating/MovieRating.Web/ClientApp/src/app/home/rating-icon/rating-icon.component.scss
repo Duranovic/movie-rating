@@ -1,0 +1,14 @@
+button{
+    pointer-events: none;
+    &.clickable{
+        pointer-events: all;
+        &:hover{
+            mat-icon{
+                filter: brightness(80%);
+            }
+        }
+    }
+    mat-icon{
+        transition: filter .3s;
+    }
+}

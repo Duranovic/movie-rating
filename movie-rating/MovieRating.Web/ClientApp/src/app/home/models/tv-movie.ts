@@ -1,12 +1,14 @@
 import { Actor } from './actor';
+import { MovieStar } from './movie-star';
 
 export interface TvMovie {
-  id: string;
+  id: number;
   title: string;
   description: string;
   coverImageUrl: string
   releaseDate: Date;
   rating: number;
   actors: Actor[];
-  addedStars: number;
+  yourRate: number;
+  yourRateId: number
 }

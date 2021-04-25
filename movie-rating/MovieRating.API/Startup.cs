@@ -39,7 +39,10 @@ namespace MovieRating.API
                 options.AddPolicy(name: MyAllowSpecificOrigins,
                                   builder =>
                                   {
-                                      builder.WithOrigins("https://localhost:44381", "http://localhost:4200");
+                                      builder
+                                      .WithOrigins("https://localhost:44381", "http://localhost:4200")
+                                        .AllowAnyHeader()
+                                        .AllowAnyMethod();
                                   });
             });
             services.AddControllers();

@@ -1,0 +1,13 @@
+    <div class="d-flex align-items-center">
+        <ng-container *!ngIf="clickable">
+            <button *ngFor="let item of fakeArray; let i = index">
+                <mat-icon [color]="i < count ? 'accent' : 'gray'">star</mat-icon>
+            </button>
+        </ng-container>
+        <ng-container *ngIf="clickable">
+            <button *ngFor="let item of fakeArray; let i = index" [ngClass]="{'clickable': clickable == 'yes'}" (click)="rateMovie(i + 1)">
+                <mat-icon [color]="i < count ? 'accent' : 'gray'">star</mat-icon>
+            </button>
+        </ng-container>
+        <span class="pl-2" *ngIf="clickable != 'yes'">({{count}} stars)</span>
+    </div>

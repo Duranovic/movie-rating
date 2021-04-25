@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MovieRating.Core;
 using MovieRating.Data.Entities;
+using MovieRating.Data.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace MovieRating.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ICollection<Show>> GetInRange(int min, int max)
+        public async Task<ICollection<ShowVM>> GetInRange(int min, int max)
         {
             return await showService.GetInRange(min, max);
         }

@@ -17,7 +17,6 @@ export class ListTvShowComponent implements OnInit {
     this.tvShowService.getTvShow().pipe().subscribe(
       data=>{
         this.tvShows = data;
-        console.log(this.tvShows);
       });
   }
 

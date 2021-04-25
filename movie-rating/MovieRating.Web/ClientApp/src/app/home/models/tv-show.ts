@@ -1,7 +1,7 @@
 import { Actor } from './actor';
 
 export interface TvShow {
-  id: string;
+  id: number;
   title: string;
   releaseDate: Date;
   coverImageUrl: string
