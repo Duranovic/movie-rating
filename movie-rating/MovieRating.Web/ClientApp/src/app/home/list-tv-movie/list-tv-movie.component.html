@@ -35,7 +35,7 @@
                     <tr *ngFor="let item of tvMovies">
                         <td>{{item.title}}</td>
                         <td>
-                            <app-rating-icon [count]="item.rating"></app-rating-icon>
+                            <app-rating-icon [count]="item.calculatedRating"></app-rating-icon>
                         </td>
                         <td>
                             <app-rating-icon [count]="item.yourRate" clickable="yes" (newItemEvent)="rateMovie($event, item.id, item.yourRateId)"></app-rating-icon>

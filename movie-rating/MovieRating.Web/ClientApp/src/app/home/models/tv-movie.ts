@@ -8,6 +8,7 @@ export interface TvMovie {
   coverImageUrl: string
   releaseDate: Date;
   rating: number;
+  calculatedRating: number;
   actors: Actor[];
   yourRate: number;
   yourRateId: number
