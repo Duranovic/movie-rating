@@ -1877,7 +1877,7 @@ namespace MovieRating.Data.Migrations
                 keyColumn: "Id",
                 keyValue: 8,
                 columns: new[] { "CoverImageUrl", "Description", "ReleaseDate", "Title" },
-                values: new object[] { "https://picsum.photos/640/480/?image=644", "Andy shoes are designed to keeping in mind durability as well as trends, the most stylish range of shoes & sandals", new DateTime(2022, 3, 27, 21, 56, 30, 132, DateTimeKind.Local).AddTicks(4533), "Incredible Steel Chicken" });
+                values: new object[] { "https://picsum.photos/640/480/?image=645", "Andy shoes are designed to keeping in mind durability as well as trends, the most stylish range of shoes & sandals", new DateTime(2022, 3, 27, 21, 56, 30, 132, DateTimeKind.Local).AddTicks(4533), "Incredible Steel Chicken" });
 
             migrationBuilder.UpdateData(
                 table: "Movies",
@@ -1891,7 +1891,7 @@ namespace MovieRating.Data.Migrations
                 keyColumn: "Id",
                 keyValue: 10,
                 columns: new[] { "CoverImageUrl", "Description", "ReleaseDate", "Title" },
-                values: new object[] { "https://picsum.photos/640/480/?image=438", "The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality", new DateTime(2022, 2, 27, 5, 55, 15, 475, DateTimeKind.Local).AddTicks(749), "Generic Concrete Gloves" });
+                values: new object[] { "https://picsum.photos/640/480/?image=439", "The slim & simple Maple Gaming Keyboard from Dev Byte comes with a sleek body and 7- Color RGB LED Back-lighting for smart functionality", new DateTime(2022, 2, 27, 5, 55, 15, 475, DateTimeKind.Local).AddTicks(749), "Generic Concrete Gloves" });
 
             migrationBuilder.UpdateData(
                 table: "Movies",
@@ -1940,7 +1940,7 @@ namespace MovieRating.Data.Migrations
                 keyColumn: "Id",
                 keyValue: 17,
                 columns: new[] { "CoverImageUrl", "Description", "ReleaseDate", "Title" },
-                values: new object[] { "https://picsum.photos/640/480/?image=644", "The beautiful range of Apple Naturalé that has an exciting mix of natural ingredients. With the Goodness of 100% Natural Ingredients", new DateTime(2022, 4, 1, 15, 16, 5, 946, DateTimeKind.Local).AddTicks(5409), "Unbranded Concrete Pizza" });
+                values: new object[] { "https://picsum.photos/640/480/?image=645", "The beautiful range of Apple Naturalé that has an exciting mix of natural ingredients. With the Goodness of 100% Natural Ingredients", new DateTime(2022, 4, 1, 15, 16, 5, 946, DateTimeKind.Local).AddTicks(5409), "Unbranded Concrete Pizza" });
 
             migrationBuilder.UpdateData(
                 table: "Movies",
@@ -5154,7 +5154,7 @@ namespace MovieRating.Data.Migrations
                 keyColumn: "Id",
                 keyValue: 10,
                 columns: new[] { "CoverImageUrl", "Description", "EndYear", "StartYear", "Title" },
-                values: new object[] { "https://picsum.photos/640/480/?image=589", "Boston's most advanced compression wear technology increases muscle oxygenation, stabilizes active muscles", 2016, 2005, "James Miller" });
+                values: new object[] { "https://picsum.photos/640/480/?image=590", "Boston's most advanced compression wear technology increases muscle oxygenation, stabilizes active muscles", 2016, 2005, "James Miller" });
 
             migrationBuilder.UpdateData(
                 table: "Shows",
