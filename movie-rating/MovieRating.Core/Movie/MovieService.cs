@@ -42,8 +42,6 @@ namespace MovieRating.Core
         public async Task<ICollection<MovieVM>> GetInRange(int min, int max)
         {
             return await Task.FromResult(movieRepository.GetAll()
-                .Skip(min - 1)
-                .Take(max - min + 1)
                 .Select(x => new MovieVM
                 {
                     Id = x.Id,
@@ -54,7 +52,10 @@ namespace MovieRating.Core
                     Rating = Math.Round(ratingMovieRepository.GetAll().Where(y => y.MovieId == x.Id).Average(y => y.Stars)),
                     YourRate = movieStarRepository.GetAll().Where(y => y.MovieId == x.Id)?.FirstOrDefault()?.Stars,
                     YourRateId = movieStarRepository.GetAll().Where(y => y.MovieId == x.Id)?.FirstOrDefault()?.Id,
-                }).OrderByDescending(x => x.Rating).ToList()
+                }).OrderByDescending(x => x.Rating)
+                .Skip(min - 1)
+                .Take(max - min + 1)
+                .ToList()
                 );
         }
 
@@ -65,7 +66,7 @@ namespace MovieRating.Core
             if (match.Success)
             {
                 var starNumber = int.Parse(match.Groups[1].Value);
-                return await Task.FromResult(ObjectFactory(starNumber).Where(x => x.Rating >= starNumber).ToList());
+                return await Task.FromResult(ObjectFactory().Where(x => x.Rating >= starNumber).ToList());
             }
 
             Regex exactNumberRegex = new Regex("(.) stars");
@@ -73,7 +74,7 @@ namespace MovieRating.Core
             if (match.Success)
             {
                 var starNumber = int.Parse(match.Groups[1].Value);
-                return await Task.FromResult(ObjectFactory(starNumber).Where(x=>x.Rating == starNumber).ToList());
+                return await Task.FromResult(ObjectFactory().Where(x=>x.Rating == starNumber).ToList());
             }
 
             var textualSearch = movieRepository.GetAll()
@@ -102,7 +103,7 @@ namespace MovieRating.Core
             return await Task.FromResult(movieStarRepository.Update(movieStar));
         }
 
-        private ICollection<MovieVM>ObjectFactory(int starNumber)
+        private ICollection<MovieVM>ObjectFactory()
         {
             return movieRepository.GetAll().Select(x => new MovieVM
             {
