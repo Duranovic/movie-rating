@@ -14,11 +14,5 @@
     </div>
 </div>
 
-
-<ng-container *ngIf="tvMovies!=null && !formGroup.controls.toggle.value">
-    <app-list-tv-movie></app-list-tv-movie>
-</ng-container>
-
-<ng-container *ngIf="tvShows==null && formGroup.controls.toggle.value">
-    <app-list-tv-show></app-list-tv-show>
-</ng-container>
+<app-list-tv-movie *ngIf="!formGroup.controls.toggle.value"></app-list-tv-movie>
+<app-list-tv-show *ngIf="formGroup.controls.toggle.value"></app-list-tv-show>
