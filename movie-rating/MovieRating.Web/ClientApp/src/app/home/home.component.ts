@@ -24,26 +24,10 @@ export class HomeComponent implements OnInit {
       search: new FormControl(''),
       toggle: new FormControl(false)
     });
-    console.log(this.formGroup);
 
     this.tvMovieService.getTvMovie().pipe().subscribe(
       data=>{
         this.tvMovies = data;
       });
-  }
-
-  loadMoreItems(){
-    this.isTvShows?this.loadMoreMovies():this.loadMoreMovies();
-  }
-
-  loadMoreMovies(){
-    this.tvMovieService.loadMoreTvMovies().pipe().subscribe(
-      data=>this.tvMovies.push(...data)
-    );
-  }
-  loadMoreShows(){
-    this.tvShowService.loadMoreTvShows().pipe().subscribe(
-      data=>this.tvShows.push(...data)
-    );
   }
 }
