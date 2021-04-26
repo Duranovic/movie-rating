@@ -22,9 +22,12 @@ namespace MovieRating.API.Controllers
         }
 
         [HttpGet]
-        public async Task<ICollection<MovieVM>> GetInRange(int min, int max)
+        public async Task<ICollection<MovieVM>> Get([FromQuery] int min, [FromQuery] int max, [FromQuery] string searchKey)
         {
-            return await movieService.GetInRange(min, max);
+            if(searchKey == null)
+                return await movieService.GetInRange(min, max);
+            else
+                return await movieService.Search(searchKey);
         }
 
         [HttpPut]

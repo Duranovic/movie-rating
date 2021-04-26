@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace MovieRating.Core
@@ -15,6 +16,7 @@ namespace MovieRating.Core
         Task<ICollection<MovieVM>> GetInRange(int min, int max);
         Task<MovieStar> Add(MovieStar movieStar);
         Task<MovieStar> Update(MovieStar movieStar);
+        Task<ICollection<MovieVM>> Search(string term);
     }
     public class MovieService : IMovieService
     {
@@ -56,6 +58,40 @@ namespace MovieRating.Core
                 );
         }
 
+        public async Task<ICollection<MovieVM>> Search(string term)
+        {     
+            Regex atLeastNumberRegex = new Regex("at least (.) stars");
+            var match = atLeastNumberRegex.Match(term);
+            if (match.Success)
+            {
+                var starNumber = int.Parse(match.Groups[1].Value);
+                return await Task.FromResult(ObjectFactory(starNumber).Where(x => x.Rating >= starNumber).ToList());
+            }
+
+            Regex exactNumberRegex = new Regex("(.) stars");
+            match = exactNumberRegex.Match(term);
+            if (match.Success)
+            {
+                var starNumber = int.Parse(match.Groups[1].Value);
+                return await Task.FromResult(ObjectFactory(starNumber).Where(x=>x.Rating == starNumber).ToList());
+            }
+
+            var textualSearch = movieRepository.GetAll()
+                .Where(x => x.Description.Contains(term) || x.Title.Contains(term))
+                .Select(x => new MovieVM
+                {
+                    CoverImageUrl = x.CoverImageUrl,
+                    Description = x.Description,
+                    Title = x.Title,
+                    ReleaseDate = x.ReleaseDate,
+                    YourRate = movieStarRepository.GetAll().Where(y => y.MovieId == x.Id)?.FirstOrDefault()?.Stars,
+                    YourRateId = movieStarRepository.GetAll().Where(y => y.MovieId == x.Id)?.FirstOrDefault()?.Id,
+                    Rating = Math.Round(ratingMovieRepository.GetAll().Where(y => y.MovieId == x.Id).Average(y => y.Stars)),
+                }).ToList();
+
+            return await Task.FromResult(textualSearch);
+        }
+
         public async Task<MovieStar> Add(MovieStar movieStar)
         {
             return await Task.FromResult(movieStarRepository.Add(movieStar));
@@ -63,6 +99,20 @@ namespace MovieRating.Core
         public async Task<MovieStar> Update(MovieStar movieStar)
         {
             return await Task.FromResult(movieStarRepository.Update(movieStar));
+        }
+
+        private ICollection<MovieVM>ObjectFactory(int starNumber)
+        {
+            return movieRepository.GetAll().Select(x => new MovieVM
+            {
+                CoverImageUrl = x.CoverImageUrl,
+                Description = x.Description,
+                Title = x.Title,
+                ReleaseDate = x.ReleaseDate,
+                YourRate = movieStarRepository.GetAll().Where(y => y.MovieId == x.Id)?.FirstOrDefault()?.Stars,
+                YourRateId = movieStarRepository.GetAll().Where(y => y.MovieId == x.Id)?.FirstOrDefault()?.Id,
+                Rating = Math.Round(ratingMovieRepository.GetAll().Where(y => y.MovieId == x.Id).Average(y => y.Stars)),
+            }).ToList();
         }
     }
 }

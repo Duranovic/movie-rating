@@ -33,6 +33,10 @@ export class TvMovieApiService {
       }
     }
 
+    search(term:string){
+      return this.http.get<TvMovie[]>(`${this.baseUrl}/movie?searchKey=${term}`);
+    }
+
     get baseUrl(): string {
         return `${this.appConfig.appSettings.apiEndpoints.endpoint}`;
     }

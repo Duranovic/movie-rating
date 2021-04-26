@@ -11,6 +11,7 @@ import { TvMovieApiService } from '../services/api/tv-movie.service';
 })
 export class ListTvMovieComponent implements OnInit {
   @Input() searchedTvMovies: TvMovie [];
+  @Input() searchActive: boolean;
   tvMovies: TvMovie[];
   showRateMovie: boolean = false;
   constructor(private tvMovieService: TvMovieApiService ) { }
@@ -20,6 +21,7 @@ export class ListTvMovieComponent implements OnInit {
       data=>{
         this.tvMovies = data;
         this.calculateRating(this.tvMovies);
+        this.calculateRating(this.searchedTvMovies);
       });
   }
 
@@ -38,10 +40,12 @@ export class ListTvMovieComponent implements OnInit {
   rateMovie(event:any, id:number, yourRateId: number){
     var movieStar : MovieStar = new MovieStar(id, event, yourRateId);
     this.tvMovieService.addRating(movieStar);
-    for(let item of this.tvMovies){
-      if(item.id == id){
-          item.calculatedRating = Math.round((item.rating + event) / 2);
-          item.yourRate = event;
+    if(!this.searchActive){
+      for(let item of this.tvMovies){
+        if(item.id == id){
+            item.calculatedRating = Math.round((item.rating + event) / 2);
+            item.yourRate = event;
+        }
       }
     }
   }

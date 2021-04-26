@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
   tvMovies: TvMovie[];
   tvShows: TvShow[];
   isTvShows: boolean = false;
+  searchActive: boolean = false;
   formGroup: FormGroup;
 
   constructor(private tvMovieService: TvMovieApiService, private tvShowService: TvShowApiService) { }
@@ -28,6 +29,21 @@ export class HomeComponent implements OnInit {
     this.tvMovieService.getTvMovie().pipe().subscribe(
       data=>{
         this.tvMovies = data;
-      });
+    });
+
+    this.formGroup.controls.search.valueChanges.subscribe(term=>{
+      if(term.length >= 2){
+        this.searchActive = true;
+        if(!this.formGroup.controls.toggle.value)
+          this.tvMovieService.search(term).subscribe(data=>{
+            this.tvMovies = data;
+            for(let item of data){
+              item.calculatedRating = Math.round((item.rating + item.yourRate) / 2);
+            }
+          });
+      }else{
+        this.searchActive = false;
+      }
+    })
   }
 }

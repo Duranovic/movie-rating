@@ -14,5 +14,5 @@
     </div>
 </div>
 
-<app-list-tv-movie *ngIf="!formGroup.controls.toggle.value"></app-list-tv-movie>
+<app-list-tv-movie *ngIf="!formGroup.controls.toggle.value" [searchedTvMovies]="tvMovies" [searchActive]="searchActive"></app-list-tv-movie>
 <app-list-tv-show *ngIf="formGroup.controls.toggle.value"></app-list-tv-show>
