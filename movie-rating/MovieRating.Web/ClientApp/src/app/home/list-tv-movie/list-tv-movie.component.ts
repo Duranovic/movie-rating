@@ -22,9 +22,9 @@ export class ListTvMovieComponent implements OnInit {
         this.tvMovies = data;
         this.calculateRating(this.tvMovies);
         this.calculateRating(this.searchedTvMovies);
+
       });
   }
-
   loadMoreItems(){
     this.tvMovieService.loadMoreTvMovies().pipe().subscribe(
       data=>{
@@ -36,7 +36,6 @@ export class ListTvMovieComponent implements OnInit {
   toggleShowRateMovie(){
     this.showRateMovie = !this.showRateMovie;
   }
-
   rateMovie(event:any, id:number, yourRateId: number){
     var movieStar : MovieStar = new MovieStar(id, event, yourRateId);
     this.tvMovieService.addRating(movieStar);
@@ -47,12 +46,28 @@ export class ListTvMovieComponent implements OnInit {
             item.yourRate = event;
         }
       }
+    }else{
+      for(let item of this.searchedTvMovies){
+        if(item.id == id){
+          item.calculatedRating = Math.round((item.rating + event) / 2);
+          item.yourRate = event;
+        }
+      }
     }
+    this.searchedTvMovies.sort(this.compare);
+    this.tvMovies.sort(this.compare);
   }
-
   calculateRating(array: any[]){
     for(let item of array){
       item.calculatedRating = Math.round((item.rating + item.yourRate) / 2);
     }
+    array.sort(this.compare);
+  }
+
+  compare(a:TvMovie, b:TvMovie) {
+    if (a.calculatedRating > b.calculatedRating) return -1;
+    if (b.calculatedRating > a.calculatedRating) return 1;
+  
+    return 0;
   }
 }

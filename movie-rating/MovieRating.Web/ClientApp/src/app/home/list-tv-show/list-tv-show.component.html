@@ -3,7 +3,7 @@
         <div class="col-12 text-center mb-5">
           <h2>The Top TV Shows</h2>
         </div>
-        <div class="item col-lg-4 mb-5" *ngFor="let item of tvShows">
+        <div class="item col-lg-4 mb-5" *ngFor="let item of (searchActive)?searchedTvShows:tvShows">
             <mat-card class="example-card">
                 <mat-card-header>
                   <mat-card-title>{{item.title}}</mat-card-title>
@@ -19,7 +19,7 @@
                 </mat-card-content>
               </mat-card>
         </div>
-        <div class="col-12 text-center mb-5">
+        <div class="col-12 text-center mb-5" *ngIf="!searchActive">
           <button type="button" mat-raised-button color="accent" (click)="loadMoreItems()">Load more</button>
       </div>
     </div>

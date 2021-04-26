@@ -9,6 +9,7 @@ import { TvShowApiService } from '../services/api/tv-show.service';
 })
 export class ListTvShowComponent implements OnInit {
   @Input() searchedTvShows: TvShow[];
+  @Input() searchActive: boolean;
   tvShows: TvShow[];
 
   constructor(private tvShowService: TvShowApiService) { }

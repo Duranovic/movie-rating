@@ -20,6 +20,10 @@ export class TvShowApiService {
     return this.http.get<TvShow[]>(`${this.baseUrl}/movie?min=${this.numberOfShowsLoaded + 1}&max=${this.numberOfShowsLoaded+=10}`);
   }
 
+  search(term:string){
+    return this.http.get<TvShow[]>(`${this.baseUrl}/movie?searchKey=${term}`);
+  }
+
   get baseUrl(): string {
       return `${this.appConfig.appSettings.apiEndpoints.endpoint}`;
   }

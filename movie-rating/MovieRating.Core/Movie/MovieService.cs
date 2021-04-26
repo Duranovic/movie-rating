@@ -54,7 +54,7 @@ namespace MovieRating.Core
                     Rating = Math.Round(ratingMovieRepository.GetAll().Where(y => y.MovieId == x.Id).Average(y => y.Stars)),
                     YourRate = movieStarRepository.GetAll().Where(y => y.MovieId == x.Id)?.FirstOrDefault()?.Stars,
                     YourRateId = movieStarRepository.GetAll().Where(y => y.MovieId == x.Id)?.FirstOrDefault()?.Id,
-                }).ToList()
+                }).OrderByDescending(x => x.Rating).ToList()
                 );
         }
 
@@ -80,6 +80,7 @@ namespace MovieRating.Core
                 .Where(x => x.Description.Contains(term) || x.Title.Contains(term))
                 .Select(x => new MovieVM
                 {
+                    Id = x.Id,
                     CoverImageUrl = x.CoverImageUrl,
                     Description = x.Description,
                     Title = x.Title,
@@ -87,7 +88,7 @@ namespace MovieRating.Core
                     YourRate = movieStarRepository.GetAll().Where(y => y.MovieId == x.Id)?.FirstOrDefault()?.Stars,
                     YourRateId = movieStarRepository.GetAll().Where(y => y.MovieId == x.Id)?.FirstOrDefault()?.Id,
                     Rating = Math.Round(ratingMovieRepository.GetAll().Where(y => y.MovieId == x.Id).Average(y => y.Stars)),
-                }).ToList();
+                }).OrderByDescending(x => x.Rating).ToList();
 
             return await Task.FromResult(textualSearch);
         }
@@ -105,6 +106,7 @@ namespace MovieRating.Core
         {
             return movieRepository.GetAll().Select(x => new MovieVM
             {
+                Id = x.Id,
                 CoverImageUrl = x.CoverImageUrl,
                 Description = x.Description,
                 Title = x.Title,
@@ -112,7 +114,7 @@ namespace MovieRating.Core
                 YourRate = movieStarRepository.GetAll().Where(y => y.MovieId == x.Id)?.FirstOrDefault()?.Stars,
                 YourRateId = movieStarRepository.GetAll().Where(y => y.MovieId == x.Id)?.FirstOrDefault()?.Id,
                 Rating = Math.Round(ratingMovieRepository.GetAll().Where(y => y.MovieId == x.Id).Average(y => y.Stars)),
-            }).ToList();
+            }).OrderByDescending(x => x.Rating).ToList();
         }
     }
 }
